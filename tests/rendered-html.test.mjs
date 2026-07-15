@@ -37,52 +37,65 @@ test("server-renders the MORS² light experience shell", async () => {
 });
 
 test("keeps the light, controls, and simulation in the shipped source", async () => {
-  const [experience, page, layout, packageJson] = await Promise.all([
+  const [experience, canvas, surface, compatibility, page, layout, packageJson, worker] = await Promise.all([
     readFile(new URL("../app/MorsLightExperience.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/light/MorsLightCanvas.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/light/MorsPageSurface.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/light/three-html-compatibility.ts", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
+    readFile(new URL("../worker/index.ts", import.meta.url), "utf8"),
   ]);
 
-  assert.match(experience, /new THREE\.HTMLTexture/);
-  assert.match(experience, /function installThreeHtmlTextureCompatibility/);
-  assert.match(experience, /value: function texElementImage2D\(/);
-  assert.match(experience, /new THREE\.HemisphereLight/);
-  assert.match(experience, /new THREE\.DirectionalLight/);
-  assert.match(experience, /new THREE\.SpotLight/);
-  assert.doesNotMatch(experience, /ConeGeometry/);
-  assert.match(experience, /event\.button === 2/);
-  assert.match(experience, /Math\.round\(beamStartAngle \+ movementX \* 0\.14\)/);
-  assert.match(experience, /shouldCycleColor/);
-  assert.match(experience, /contextmenu/);
-  assert.match(experience, /const BASE_LIGHT_DIRECTION = DOWN\.clone\(\)/);
-  assert.match(experience, /const cameraDrop = portrait/);
-  assert.match(experience, /const upwardTarget = portrait/);
-  assert.match(experience, /const fixedStep = 1 \/ 120/);
-  assert.match(experience, /function updatePointerTarget/);
-  assert.match(experience, /pullStrength/);
-  assert.match(experience, /intersectPlane/);
-  assert.doesNotMatch(experience, /isInteractiveTarget/);
-  assert.doesNotMatch(experience, /event\.preventDefault\(\)/);
-  assert.match(experience, />BEAM</);
-  assert.match(experience, /BRIGHTNESS/);
-  assert.match(experience, />COLOR</);
+  assert.match(experience, /dynamic\(/);
+  assert.match(experience, /ssr: false/);
+  assert.match(experience, /loading: MorsLightLoading/);
+  assert.doesNotMatch(experience, /from "three"/);
+  assert.match(canvas, /new THREE\.HTMLTexture/);
+  assert.match(compatibility, /function installThreeHtmlTextureCompatibility/);
+  assert.match(compatibility, /value: function texElementImage2D\(/);
+  assert.match(canvas, /new THREE\.HemisphereLight/);
+  assert.match(canvas, /new THREE\.DirectionalLight/);
+  assert.match(canvas, /new THREE\.SpotLight/);
+  assert.doesNotMatch(canvas, /ConeGeometry/);
+  assert.match(canvas, /event\.button === 2/);
+  assert.match(canvas, /Math\.round\(beamStartAngle \+ movementX \* 0\.14\)/);
+  assert.match(canvas, /shouldCycleColor/);
+  assert.match(canvas, /contextmenu/);
+  assert.match(canvas, /const BASE_LIGHT_DIRECTION = DOWN\.clone\(\)/);
+  assert.match(canvas, /const cameraDrop = portrait/);
+  assert.match(canvas, /const upwardTarget = portrait/);
+  assert.match(canvas, /const fixedStep = 1 \/ 120/);
+  assert.match(canvas, /function updatePointerTarget/);
+  assert.match(canvas, /pullStrength/);
+  assert.match(canvas, /intersectPlane/);
+  assert.doesNotMatch(canvas, /isInteractiveTarget/);
+  assert.doesNotMatch(canvas, /event\.preventDefault\(\)/);
+  assert.match(canvas, /width < 760 \? 1\.25 : 1\.5/);
+  assert.match(surface, />BEAM</);
+  assert.match(surface, /BRIGHTNESS/);
+  assert.match(surface, />COLOR</);
+  assert.match(surface, /function MorsLightPreview/);
   assert.match(page, /<MorsLightExperience \/>/);
   assert.match(layout, /MORS²/);
+  assert.match(layout, /og\.jpg/);
   assert.match(packageJson, /"three-html-render"/);
+  assert.doesNotMatch(packageJson, /tailwindcss/);
+  assert.doesNotMatch(worker, /image-optimization/);
 });
 
 test("keeps the GitHub Pages static deployment configured", async () => {
-  const [nextConfig, workflow, readme, experience] = await Promise.all([
+  const [nextConfig, workflow, readme, surface] = await Promise.all([
     readFile(new URL("../next.config.ts", import.meta.url), "utf8"),
     readFile(new URL("../.github/workflows/deploy-pages.yml", import.meta.url), "utf8"),
     readFile(new URL("../README.md", import.meta.url), "utf8"),
-    readFile(new URL("../app/MorsLightExperience.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/light/MorsPageSurface.tsx", import.meta.url), "utf8"),
   ]);
 
   assert.match(nextConfig, /output: "export"/);
   assert.match(nextConfig, /basePath/);
-  assert.match(experience, /NEXT_PUBLIC_BASE_PATH/);
+  assert.match(surface, /NEXT_PUBLIC_BASE_PATH/);
   assert.match(workflow, /actions\/configure-pages@v5/);
   assert.match(workflow, /actions\/upload-pages-artifact@v4/);
   assert.match(workflow, /actions\/deploy-pages@v5/);

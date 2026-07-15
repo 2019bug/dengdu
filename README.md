@@ -15,7 +15,7 @@ An interactive **HTML-in-Canvas** lighting experiment powered by Three.js.
 
 </div>
 
-![A hanging spotlight illuminating an interactive surface](./public/og.png)
+![A hanging spotlight illuminating an interactive surface](./public/og.jpg)
 
 HTML Light Demo renders a real HTML interface inside a Three.js scene with
 [`three-html-render`](https://www.npmjs.com/package/three-html-render), then
