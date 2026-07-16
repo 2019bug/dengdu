@@ -11,6 +11,7 @@ const nextConfig: NextConfig = isGitHubPages
       ...sharedConfig,
       output: "export",
       basePath,
+      assetPrefix: basePath,
       trailingSlash: true,
       images: { unoptimized: true },
     }
