@@ -39,15 +39,15 @@ export function PageSurface({
     >
       <header className="page-header">
         <div className="page-brand">
-          <span>灯都互联</span>
+          <span>云隙照明®</span>
           <span className="page-brand-suffix">ZHONGSHAN</span>
         </div>
-        <div className="page-status"><span /> LIGHTING R&D CENTER</div>
+        <div className="page-status"><span />+86 131-1964-3888（Mr.Hu）</div>
       </header>
 
       <div className="page-main">
         <section className="page-copy" aria-labelledby={titleId}>
-          <p className="page-kicker">01 / ORIGINAL MANUFACTURER</p>
+          <p className="page-kicker">01 / LUX APERTURE</p>
           <h1 id={titleId}>
             我们的使命，<br />
             专注于光的<span>价值</span>
@@ -71,7 +71,7 @@ export function PageSurface({
                 </button>
               ))}
             </div>
-            <p className="concept-description">{concept ? CONCEPTS[concept] : <span style={{opacity: 0.5}}>点击查看详情</span>}</p>
+            <p className="concept-description">{concept ? CONCEPTS[concept] : <span style={{opacity: 0.5}}></span>}</p>
           </div>
         </section>
 
@@ -155,10 +155,10 @@ export function PageSurface({
       </div>
 
       <footer className="page-footer">
-        <p>设计 / 研发 / 制造 / 方案 / 工程</p>
+        <p>Powered By @kaolti</p>
         <div className="drag-instruction">
           <span className="drag-orbit" aria-hidden="true"><i /></span>
-          <div><b>灯都 · 四季里 · 秋广场214</b><span>+86 131-1964-3888</span></div>
+          <div><b>灯都 · 四季里 · 秋广场 No.214</b></div>
         </div>
         <p>深圳市云隙照明科技有限公司</p>
       </footer>
