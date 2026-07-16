@@ -534,9 +534,10 @@ button {
 }
 
 .drag-instruction div span {
-  color: rgba(239, 241, 247, 0.34);
-  font-size: 8px;
+  color: rgba(239, 241, 247, 0.64);
+  font-size: 10px;
   letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .drag-orbit {
