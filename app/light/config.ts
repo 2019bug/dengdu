@@ -21,5 +21,5 @@ export const INITIAL_LIGHT: LightingSettings = {
   enabled: true,
   angle: 42,
   brightness: 1800,
-  color: "#ffb36b",
+  color: "#ffd9a3",
 };
