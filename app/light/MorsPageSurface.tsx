@@ -71,7 +71,7 @@ export function PageSurface({
                 </button>
               ))}
             </div>
-            <p className="concept-description">{concept ? <><span>{concept}</span>{CONCEPTS[concept]}</> : <span style={{opacity: 0.5}}>请选择一个业务模块查看详情</span>}</p>
+            <p className="concept-description">{concept ? CONCEPTS[concept] : <span style={{opacity: 0.5}}>点击查看详情</span>}</p>
           </div>
         </section>
 
