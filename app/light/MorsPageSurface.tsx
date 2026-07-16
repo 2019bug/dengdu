@@ -158,7 +158,7 @@ export function PageSurface({
         <p>设计 / 研发 / 制造 / 方案 / 工程</p>
         <div className="drag-instruction">
           <span className="drag-orbit" aria-hidden="true"><i /></span>
-          <div><b>灯都 · 四季里 · 秋广场214</b><span>Mr.Hu 131-1964-3888</span></div>
+          <div><b>灯都 · 四季里 · 秋广场214</b><span>+86 131-1964-3888</span></div>
         </div>
         <p>深圳市云隙照明科技有限公司</p>
       </footer>
@@ -189,9 +189,6 @@ export function LightLoading() {
   return (
     <main className="experience-shell" aria-label="灯都互联交互式灯光展示">
       <LightPreview />
-      <div className="scene-status" aria-live="polite">
-        <span /> LOADING INTERACTIVE LIGHT
-      </div>
     </main>
   );
 }
