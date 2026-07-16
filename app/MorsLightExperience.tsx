@@ -1,16 +1,16 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { MorsLightLoading } from "./light/MorsPageSurface";
+import { LightLoading } from "./light/MorsPageSurface";
 
-const MorsLightCanvas = dynamic(
-  () => import("./light/MorsLightCanvas").then((module) => module.MorsLightCanvas),
+const LightCanvas = dynamic(
+  () => import("./light/MorsLightCanvas").then((module) => module.LightCanvas),
   {
-    loading: MorsLightLoading,
+    loading: LightLoading,
     ssr: false,
   },
 );
 
-export function MorsLightExperience() {
-  return <MorsLightCanvas />;
+export function LightExperience() {
+  return <LightCanvas />;
 }

@@ -8,26 +8,22 @@ const publicAsset = (path: string) => new URL(`${basePath}${path}`, siteUrl).toS
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "MORS² Game Engine",
-    template: "%s — MORS²",
+    default: "灯都互联 - 专注光的价值",
+    template: "%s — 灯都互联",
   },
   description:
-    "MORS² is a small, elegant, high-performance Rust game engine architecture.",
-  icons: {
-    icon: publicAsset("/mors-logo.svg"),
-    shortcut: publicAsset("/mors-logo.svg"),
-  },
+    "原创光影美学，自研核心技术，精益自主智造。设计、研发、制造、方案、工程一站式照明解决方案。",
   openGraph: {
-    title: "MORS² Game Engine",
-    description: "Meta is observed by Rule to Step in Space.",
+    title: "灯都互联 - 专注光的价值",
+    description: "我们的使命，专注于光的价值",
     type: "website",
     url: siteUrl,
-    images: [{ url: publicAsset("/og.jpg"), width: 1200, height: 630, alt: "A hanging light reveals the MORS² engine architecture." }],
+    images: [{ url: publicAsset("/og.jpg"), width: 1200, height: 630, alt: "灯都互联照明研发中心" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MORS² Game Engine",
-    description: "Meta is observed by Rule to Step in Space.",
+    title: "灯都互联 - 专注光的价值",
+    description: "我们的使命，专注于光的价值",
     images: [publicAsset("/og.jpg")],
   },
 };

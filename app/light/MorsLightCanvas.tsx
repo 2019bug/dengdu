@@ -9,7 +9,7 @@ import {
   type Concept,
   type LightingSettings,
 } from "./config";
-import { MorsLightPreview, MorsPageSurface } from "./MorsPageSurface";
+import { LightPreview, PageSurface } from "./MorsPageSurface";
 import {
   installThreeHtmlTextureCompatibility,
   type HtmlCanvas,
@@ -27,14 +27,14 @@ const DOWN = new THREE.Vector3(0, -1, 0);
 const UP = new THREE.Vector3(0, 1, 0);
 const BASE_LIGHT_DIRECTION = DOWN.clone();
 
-export function MorsLightCanvas() {
+export function LightCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pageSourceRef = useRef<HTMLDivElement>(null);
   const lightRigRef = useRef<LightRig | null>(null);
   const activeColorRef = useRef(new THREE.Color());
   const wakeRef = useRef<(() => void) | null>(null);
   const resetMotionRef = useRef<(() => void) | null>(null);
-  const [concept, setConcept] = useState<Concept>("Space");
+  const [concept, setConcept] = useState<Concept | null>(null);
   const [lighting, setLighting] = useState<LightingSettings>(INITIAL_LIGHT);
   const lightingRef = useRef(lighting);
   const [htmlCanvasReady, setHtmlCanvasReady] = useState(false);
@@ -126,7 +126,7 @@ export function MorsLightCanvas() {
       console.error(rendererError);
       const errorTimer = window.setTimeout(() => {
         if (!disposed) {
-          setError("This experience needs WebGL to render the MORS² light study.");
+          setError("灯光展示需要 WebGL 支持才能正常渲染。");
         }
       }, 0);
       return () => {
@@ -680,11 +680,11 @@ export function MorsLightCanvas() {
   return (
     <main
       className={`experience-shell${ready ? " is-ready" : ""}`}
-      aria-label="Interactive MORS² light study"
+      aria-label="灯都互联交互式灯光展示"
       aria-busy={!ready && !error}
     >
-      <canvas ref={canvasRef} className="webgl-canvas" aria-label="Interactive MORS² light study">
-        <MorsPageSurface
+      <canvas ref={canvasRef} className="webgl-canvas" aria-label="灯都互联交互式灯光展示">
+        <PageSurface
           sourceRef={pageSourceRef}
           concept={concept}
           lighting={lighting}
@@ -694,7 +694,7 @@ export function MorsLightCanvas() {
         />
       </canvas>
 
-      <MorsLightPreview hidden={ready || Boolean(error)} />
+      <LightPreview hidden={ready || Boolean(error)} />
       <div className={`scene-status${ready || error ? " is-hidden" : ""}`} aria-live="polite">
         <span /> PREPARING HTML SURFACE
       </div>

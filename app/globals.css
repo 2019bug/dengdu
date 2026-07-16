@@ -178,7 +178,8 @@ button {
 }
 
 .page-status {
-  gap: 9px;
+  gap: 12px;
+  margin-left: 22px;
   color: rgba(239, 241, 247, 0.54);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 10px;
@@ -223,8 +224,8 @@ button {
   color: #f7f7fa;
   font-size: 77px;
   font-weight: 670;
-  letter-spacing: -0.067em;
-  line-height: 0.94;
+  letter-spacing: 0.05em;
+  line-height: 1.15;
 }
 
 .page-copy h1 span {
@@ -520,7 +521,9 @@ button {
 }
 
 .drag-instruction div {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 3px;
 }
 

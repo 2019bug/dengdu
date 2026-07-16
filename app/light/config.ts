@@ -1,9 +1,9 @@
 export const CONCEPTS = {
-  Space: "A sandbox universe where runtime state evolves with clear boundaries.",
-  Meta: "A basic game unit that owns fields and receives rules.",
-  Field: "Explicit data that keeps layout derivable and tightly packed.",
-  Rule: "Rules declare what they need, and runtime derives the layout.",
-  Latent: "Long-lived space-level systems for global capability and reusable scratch.",
+  设计: "原创光影美学，打造专属灯光视觉",
+  研发: "自研核心技术，夯实产品硬核实力",
+  制造: "精益自主智造，严守每一件灯具品质",
+  方案: "定制场景方案，一站式灯光整体策划",
+  工程: "全周期统筹，全程护航项目落地交付",
 } as const;
 
 export type Concept = keyof typeof CONCEPTS;
@@ -19,7 +19,7 @@ export const COLOR_PRESETS = ["#ffb36b", "#ffd9a3", "#8fdcff", "#c79cff", "#ff5f
 
 export const INITIAL_LIGHT: LightingSettings = {
   enabled: true,
-  angle: 34,
-  brightness: 1450,
+  angle: 42,
+  brightness: 1800,
   color: "#ffb36b",
 };

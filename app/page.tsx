@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { MorsLightExperience } from "./MorsLightExperience";
+import { LightExperience } from "./MorsLightExperience";
 
 export const metadata: Metadata = {
-  title: "MORS² — Meta is observed by Rule to Step in Space",
+  title: "专注光的价值",
   description:
-    "A small, elegant, high-performance Rust game engine architecture built around Space, Meta, Field, Rule, and Latent.",
+    "原创光影美学，设计、研发、制造、方案、工程一站式照明解决方案。",
 };
 
 export default function Home() {
-  return <MorsLightExperience />;
+  return <LightExperience />;
 }

@@ -9,8 +9,8 @@ import {
 
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-type MorsPageSurfaceProps = {
-  concept: Concept;
+type PageSurfaceProps = {
+  concept: Concept | null;
   lighting: LightingSettings;
   onConceptChange: (concept: Concept) => void;
   onLightingChange: (patch: Partial<LightingSettings>) => void;
@@ -19,7 +19,7 @@ type MorsPageSurfaceProps = {
   sourceRef?: Ref<HTMLDivElement>;
 };
 
-export function MorsPageSurface({
+export function PageSurface({
   concept,
   lighting,
   onConceptChange,
@@ -27,8 +27,8 @@ export function MorsPageSurface({
   onReset,
   preview = false,
   sourceRef,
-}: MorsPageSurfaceProps) {
-  const titleId = preview ? "mors-title-preview" : "mors-title";
+}: PageSurfaceProps) {
+  const titleId = preview ? "light-title-preview" : "light-title";
   const tabIndex = preview ? -1 : undefined;
 
   return (
@@ -39,30 +39,25 @@ export function MorsPageSurface({
     >
       <header className="page-header">
         <div className="page-brand">
-          <span className="page-logo-wrap">
-            {/* The logo is captured by HTMLTexture, so it must remain a plain DOM image. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${BASE_PATH}/mors-logo.svg`} alt="" />
-          </span>
-          <span>MORS²</span>
-          <span className="page-brand-suffix">GAME ENGINE</span>
+          <span>灯都互联</span>
+          <span className="page-brand-suffix">ZHONGSHAN</span>
         </div>
-        <div className="page-status"><span /> EARLY DEVELOPMENT</div>
+        <div className="page-status"><span /> LIGHTING R&D CENTER</div>
       </header>
 
       <div className="page-main">
         <section className="page-copy" aria-labelledby={titleId}>
-          <p className="page-kicker">01 / RUNTIME ARCHITECTURE</p>
+          <p className="page-kicker">01 / ORIGINAL MANUFACTURER</p>
           <h1 id={titleId}>
-            Meta is observed<br />
-            by Rule to <span>Step in Space.</span>
+            我们的使命，<br />
+            专注于光的<span>价值</span>
           </h1>
           <p className="page-subtitle">
-            A Rust engine architecture where rules derive tightly packed data layout for elegant performance.
+            Our Mission , Devoted to Unlocking the Value of Light .
           </p>
 
           <div className="concepts" data-interactive>
-            <div className="concept-list" role="list" aria-label="MORS² engine model">
+            <div className="concept-list" role="list" aria-label="业务能力模块">
               {(Object.keys(CONCEPTS) as Concept[]).map((item, index) => (
                 <button
                   key={item}
@@ -76,7 +71,7 @@ export function MorsPageSurface({
                 </button>
               ))}
             </div>
-            <p className="concept-description"><span>{concept}</span>{CONCEPTS[concept]}</p>
+            <p className="concept-description">{concept ? <><span>{concept}</span>{CONCEPTS[concept]}</> : <span style={{opacity: 0.5}}>请选择一个业务模块查看详情</span>}</p>
           </div>
         </section>
 
@@ -160,12 +155,12 @@ export function MorsPageSurface({
       </div>
 
       <footer className="page-footer">
-        <p>SPACE / META / FIELD / RULE / LATENT</p>
+        <p>设计 / 研发 / 制造 / 方案 / 工程</p>
         <div className="drag-instruction">
           <span className="drag-orbit" aria-hidden="true"><i /></span>
-          <div><b>LMB PULL · RMB LIGHT</b><span>Right-drag beam · Right-click color</span></div>
+          <div><b>灯都 · 四季里 · 秋广场214</b><span>Mr.Hu 131-1964-3888</span></div>
         </div>
-        <p>FOUNDATION FIRST — OPEN SOURCE WHEN READY</p>
+        <p>深圳市云隙照明科技有限公司</p>
       </footer>
     </div>
   );
@@ -175,11 +170,11 @@ const ignoreConceptChange = () => {};
 const ignoreLightingChange = () => {};
 const ignoreReset = () => {};
 
-export function MorsLightPreview({ hidden = false }: { hidden?: boolean }) {
+export function LightPreview({ hidden = false }: { hidden?: boolean }) {
   return (
     <div className={`scene-preview${hidden ? " is-hidden" : ""}`} aria-hidden="true" inert>
-      <MorsPageSurface
-        concept="Space"
+      <PageSurface
+        concept={null}
         lighting={INITIAL_LIGHT}
         onConceptChange={ignoreConceptChange}
         onLightingChange={ignoreLightingChange}
@@ -190,10 +185,10 @@ export function MorsLightPreview({ hidden = false }: { hidden?: boolean }) {
   );
 }
 
-export function MorsLightLoading() {
+export function LightLoading() {
   return (
-    <main className="experience-shell" aria-label="Interactive MORS² light study">
-      <MorsLightPreview />
+    <main className="experience-shell" aria-label="灯都互联交互式灯光展示">
+      <LightPreview />
       <div className="scene-status" aria-live="polite">
         <span /> LOADING INTERACTIVE LIGHT
       </div>
